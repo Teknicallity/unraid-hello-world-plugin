@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<PLUGIN name="hello-world" author="YourName" version="2024.01.01">
+  <!-- Plugin Metadata -->
+  <LICENSE>GPL</LICENSE>
+  <DESCRIPTION>Hello World Plugin for Unraid</DESCRIPTION>
+  <AUTHOR>YourName</AUTHOR>
+  <VERSION>2024.01.01</VERSION>
+  <CATEGORY>Management</CATEGORY>
+
+  <!-- Icon -->
+  <ICON>https://example.com/icon.png</ICON>
+
+  <!-- Install Scripts -->
+  <FILE>
+    <URL>https://example.com/hello-world-plugin/web/HelloWorld.php</URL>
+    <TARGET>/usr/local/emhttp/plugins/hello-world/web/HelloWorld.php</TARGET>
+  </FILE>
+
+  <!-- Menu Integration -->
+  <MENU>
+    <TITLE>Hello World</TITLE>
+    <TAB>Tools</TAB>
+    <URL>/plugins/hello-world/web/HelloWorld.php</URL>
+  </MENU>
+
+  <!-- Installation Message -->
+  <INSTALL>
+    echo "Hello World Plugin Installed!"
+  </INSTALL>
+  <REMOVE>
+    echo "Hello World Plugin Removed!"
+  </REMOVE>
+</PLUGIN>
