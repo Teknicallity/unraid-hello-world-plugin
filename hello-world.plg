@@ -12,7 +12,7 @@
 
   <!-- Install Scripts -->
   <FILE>
-    <URL>https://example.com/hello-world-plugin/web/HelloWorld.php</URL>
+    <URL>https://raw.githubusercontent.com/Teknicallity/unraid-hello-world-plugin/refs/heads/main/hello-world.plg</URL>
     <TARGET>/usr/local/emhttp/plugins/hello-world/web/HelloWorld.php</TARGET>
   </FILE>
 
