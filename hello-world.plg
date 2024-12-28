@@ -8,11 +8,11 @@
   <CATEGORY>Management</CATEGORY>
 
   <!-- Icon -->
-  <ICON>https://example.com/icon.png</ICON>
+  <ICON>https://raw.githubusercontent.com/Teknicallity/unraid-templates/main/images/JMusicBot.png</ICON>
 
   <!-- Install Scripts -->
   <FILE>
-    <URL>https://raw.githubusercontent.com/Teknicallity/unraid-templates/main/images/JMusicBot.png</URL>
+    <URL>https://raw.githubusercontent.com/Teknicallity/unraid-hello-world-plugin/refs/heads/main/web/HelloWorld.php</URL>
     <TARGET>/usr/local/emhttp/plugins/hello-world/web/HelloWorld.php</TARGET>
   </FILE>
 
