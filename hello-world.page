@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<PAGE>
+  <NAME>myplugin</NAME>
+  <TITLE>Hello World</TITLE>
+  <CONTENT>
+    <TABLE>
+      <ROW>
+        <COLUMN>
+          <TEXT>Hello, Unraid!</TEXT>
+        </COLUMN>
+      </ROW>
+    </TABLE>
+  </CONTENT>
+</PAGE>
