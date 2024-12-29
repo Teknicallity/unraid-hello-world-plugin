@@ -1,14 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE PLUGIN [
-<!ENTITY name "unraid-hello-world-plugin">
-<!ENTITY author "Teknicallity">
-<!ENTITY version "2024.12.28">
-<!-- <!ENTITY gitURL "https://github.com/&author;/&name;/releases/download"> -->
-<!ENTITY gitURL "https://github.com/&author;/&name;/raw/main">https://github.com/Teknicallity/unraid-hello-world-plugin/raw/main
-<!ENTITY pluginURL "https://raw.githubusercontent.com/&author;/&name;/main/&name;.plg">https://raw.githubusercontent.com/Teknicallity/unraid-hello-world-plugin/main/unraid-hello-world-plugin.plg
-<!ENTITY plugin "/boot/config/plugins/&name;">
-<!ENTITY emhttp "/usr/local/emhttp/plugins/&name;">
-<!ENTITY md5 "490033bcee4846fe04d6e363da23bb74">
+  <!ENTITY name "unraid-hello-world-plugin">
+  <!ENTITY author "Teknicallity">
+  <!ENTITY version "2024.12.28">
+  <!ENTITY gitURL "https://github.com/&author;/&name;/raw/main">https://github.com/Teknicallity/unraid-hello-world-plugin/raw/main
+  <!ENTITY pluginURL "https://raw.githubusercontent.com/&author;/&name;/main/&name;.plg">https://raw.githubusercontent.com/Teknicallity/unraid-hello-world-plugin/main/unraid-hello-world-plugin.plg
+  <!ENTITY launch "Tools/unraid-hello-world-plugin">
+  <!ENTITY plugin "/boot/config/plugins/&name;">
+  <!ENTITY emhttp "/usr/local/emhttp/plugins/&name;">
+  <!ENTITY md5 "490033bcee4846fe04d6e363da23bb74">
 ]>
 <PLUGIN name="&name;" 
         author="&author;" 
