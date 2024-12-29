@@ -1,14 +1,14 @@
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE PLUGIN [
-  <!ENTITY name "unraid-hello-world-plugin">
-  <!ENTITY author "Teknicallity">
-  <!ENTITY version "2024.12.28">
-  <!ENTITY gitURL "https://github.com/&author;/&name;/raw/main">https://github.com/Teknicallity/unraid-hello-world-plugin/raw/main
-  <!ENTITY pluginURL "https://raw.githubusercontent.com/&author;/&name;/main/&name;.plg">https://raw.githubusercontent.com/Teknicallity/unraid-hello-world-plugin/main/unraid-hello-world-plugin.plg
-  <!ENTITY launch "Tools/unraid-hello-world-plugin">
-  <!ENTITY plugin "/boot/config/plugins/&name;">
-  <!ENTITY emhttp "/usr/local/emhttp/plugins/&name;">
-  <!ENTITY md5 "490033bcee4846fe04d6e363da23bb74">
+  <!ENTITY name       "unraid-hello-world-plugin">
+  <!ENTITY author     "Teknicallity">
+  <!ENTITY version    "2024.12.28">
+  <!ENTITY gitURL     "https://github.com/&author;/&name;/raw/main">
+  <!ENTITY pluginURL  "https://raw.githubusercontent.com/&author;/&name;/main/&name;.plg">
+  <!ENTITY launch     "Tools/unraid-hello-world-plugin">
+  <!ENTITY plugin     "/boot/config/plugins/&name;">
+  <!ENTITY emhttp     "/usr/local/emhttp/plugins/&name;">
+  <!ENTITY md5        "490033bcee4846fe04d6e363da23bb74">
 ]>
 <PLUGIN name="&name;" 
         author="&author;" 
@@ -17,55 +17,56 @@
         pluginURL="&pluginURL;" 
         min="6.9.0" 
         support="http://forums.unraid.net/index.php?topic=36543.0">
-  <CHANGES>
-##&name;
 
-###2014.11.28
+<CHANGES>
+## &name;
+
+### 2014.11.28
 - PHP 8.2 corrections
 
-###2014.11.27
+### 2014.11.27
 - initial release for unRAID v6
 
 </CHANGES>
-  <FILE Run="/bin/bash"><!-- Remove previous tarballs-->
-    <INLINE>
-rm -f $(ls /boot/config/plugins/&name;/unraid-hello-world-plugin-*.txz 2&gt;/dev/null|grep -v '&version;')
+
+<!--Remove previous tarballs-->
+<FILE Run="/bin/bash">
+<INLINE>
+rm -f $(ls /boot/config/plugins/&name;/&name;-*.txz 2&gt;/dev/null | grep -v '&version;')
+echo "remove old tarballs. Version: &version;"
 </INLINE>
-  </FILE>
-  <!--<FILE Name="/boot/config/plugins/&name;/hello-world-&version;.txz" Run="upgradepkg -\-install-new"><-\-Install new tarball at location 'name'-->
-    <!-- <URL>&gitURL;/&version;/hello-world-&version;.txz</URL>
-    <MD5>&md5;</MD5>
-  </FILE> -->
+</FILE>
 
-  <FILE Name="/boot/config/plugins/&name;/unraid-hello-world-plugin-&version;.txz" Run="upgradepkg --install-new">
-    <URL>&gitURL;/archive/unraid-hello-world-plugin-&version;.txz</URL>
-    <MD5>&md5;</MD5>
-  </FILE>
-  
-  <FILE Name="&emhttp;/README.md">
-    <INLINE>
-**Intel GPU TOP**
+<!--The install script.-->
+<FILE Name="/boot/config/plugins/&name;/&name;-&version;.txz" Run="upgradepkg --install-new">
+<URL>&gitURL;/archive/&name;-&version;.txz</URL>
+<MD5>&md5;</MD5>
+</FILE>
 
-This plugin adds the tool 'intel_gpu_top' to your unRAID server and also enables your Intel iGPU from the installation of this plugin on, so no editis to the 'go' file or creation of other files are necessary.
-To see the usage of your iGPU open up the unRAID Terminal and type in 'intel_gpu_top' (without quotes).
-This plugin satisfies installation prerequisites of the GPU Statistics plugin from Community Apps. With both plugins installed you can display Intel GPU utilization on the unRAID Dashboard.
+<!--create plugin README.md file-->
+<FILE Name="&emhttp;/README.md">
+<INLINE>
+**NTFS-3G support**
+
+All this does is install the ntfs-3g package.
 </INLINE>
-  </FILE>
-  <FILE Run="/bin/bash">
-    <INLINE>
+</FILE>
 
+<!--Do something?-->
+<FILE Run="/bin/bash">
+<INLINE>
 echo "enabled"
 
 #Check if Kernel Module is already enabled
 
 echo
 echo "----Installation of Intel GPU TOP complete-----"
-
 </INLINE>
-  </FILE>
-  <FILE Run="/bin/bash" Method="remove"><!--remove method-->
-    <INLINE>
+</FILE>
 
+<!--The 'remove' script.-->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
 echo "-----------------------------------------------"
 echo "----------Uninstalling Intel GPU TOP-----------"
 echo "-----------------------------------------------"
@@ -78,7 +79,6 @@ echo "-----------------------------------------------"
 echo "---Uninstallation of Intel GPU TOP complete!---"
 echo "-----------------------------------------------"
 echo
-
 </INLINE>
-  </FILE>
+</FILE>
 </PLUGIN>
