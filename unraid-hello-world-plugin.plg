@@ -29,13 +29,7 @@
 
 </CHANGES>
 
-<FILE Run="/bin/bash">
-<INLINE>
-echo "Listing plugin directory before:"
-ls -l /usr/local/emhttp/plugins/unraid-hello-world-plugin/ || echo "directory does not exist"
-</INLINE>
-</FILE>
-
+<!--Download image-->
 <FILE Name="&emhttp;/JMusicBot.png">
 <URL>https://raw.githubusercontent.com/Teknicallity/unraid-templates/main/images/JMusicBot.png</URL>
 </FILE>
@@ -64,14 +58,7 @@ All this does is install the ntfs-3g package.
 </INLINE>
 </FILE>
 
-<FILE Run="/bin/bash">
-<INLINE>
-echo "Listing plugin directory after:"
-ls -l /usr/local/emhttp/plugins/unraid-hello-world-plugin/ || echo "directory does not exist"
-</INLINE>
-</FILE>
-
-<!--Do something?-->
+<!--Additional echo text-->
 <FILE Run="/bin/bash">
 <INLINE>
 echo "enabled"
