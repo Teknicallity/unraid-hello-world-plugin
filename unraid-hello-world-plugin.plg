@@ -2,13 +2,13 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name       "unraid-hello-world-plugin">
   <!ENTITY author     "Teknicallity">
-  <!ENTITY version    "2024.12.29">
+  <!ENTITY version    "2024.12.30">
   <!ENTITY gitURL     "https://github.com/&author;/&name;/raw/main">
   <!ENTITY pluginURL  "https://raw.githubusercontent.com/&author;/&name;/main/&name;.plg">
   <!ENTITY launch     "Tools/unraid-hello-world-plugin">
   <!ENTITY plugin     "/boot/config/plugins/&name;">
   <!ENTITY emhttp     "/usr/local/emhttp/plugins/&name;">
-  <!ENTITY md5        "7621604be0b156c9ac2fbc0361ddae5b">
+  <!ENTITY md5        "505d9b0c0e2fe2db3883fbbf4899e7b4">
 ]>
 <PLUGIN name="&name;" 
         author="&author;" 
@@ -21,7 +21,7 @@
 <CHANGES>
 ## &name;
 
-### 2014.11.29
+### 2014.11.30
 - PHP 8.2 corrections
 
 ### 2014.11.27
@@ -29,7 +29,7 @@
 
 </CHANGES>
 
-<FILE Name="&plugin;/JMusicBot.png">
+<FILE Name="&emhttp;/JMusicBot.png">
 <URL>https://raw.githubusercontent.com/Teknicallity/unraid-templates/main/images/JMusicBot.png</URL>
 </FILE>
 
@@ -51,7 +51,7 @@ echo "remove old tarballs. Version: &version;"
 <!--create plugin README.md file-->
 <FILE Name="&emhttp;/README.md">
 <INLINE>
-**NTFS-3G support**
+**NTFS-3G unraid-hello-world-plugin**
 
 All this does is install the ntfs-3g package.
 </INLINE>
