@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name       "unraid-hello-world-plugin">
   <!ENTITY author     "Teknicallity">
-  <!ENTITY version    "2024.12.28">
+  <!ENTITY version    "2024.12.29">
   <!ENTITY gitURL     "https://github.com/&author;/&name;/raw/main">
   <!ENTITY pluginURL  "https://raw.githubusercontent.com/&author;/&name;/main/&name;.plg">
   <!ENTITY launch     "Tools/unraid-hello-world-plugin">
@@ -21,13 +21,17 @@
 <CHANGES>
 ## &name;
 
-### 2014.11.28
+### 2014.11.29
 - PHP 8.2 corrections
 
 ### 2014.11.27
 - initial release for unRAID v6
 
 </CHANGES>
+
+<FILE Name="&plugin;/JMusicBot.png">
+<URL>https://raw.githubusercontent.com/Teknicallity/unraid-templates/main/images/JMusicBot.png</URL>
+</FILE>
 
 <!--Remove previous tarballs-->
 <FILE Run="/bin/bash">
@@ -73,7 +77,7 @@ echo "----------Uninstalling Intel GPU TOP-----------"
 echo "-----------------------------------------------"
 # Remove plugin related files
 removepkg intel.gpu.top-&version;
-rm -rf /usr/local/emhttp/plugins/&name;
+rm -rf &emhttp;
 rm -rf &plugin;
 echo
 echo "-----------------------------------------------"
