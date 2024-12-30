@@ -8,7 +8,7 @@
   <!ENTITY launch     "Tools/UnraidHelloWorldPlugin">
   <!ENTITY plugin     "/boot/config/plugins/&name;">
   <!ENTITY emhttp     "/usr/local/emhttp/plugins/&name;">
-  <!ENTITY md5        "80618805ee2b6228eeec0b84081c58de">
+  <!ENTITY md5        "a106f35ad82d5d5b3b18dfa9a8353478">
 ]>
 <PLUGIN name="&name;" 
         author="&author;" 
@@ -76,7 +76,7 @@ echo "-----------------------------------------------"
 echo "----------Uninstalling Intel GPU TOP-----------"
 echo "-----------------------------------------------"
 # Remove plugin related files
-removepkg intel.gpu.top-&version;
+removepkg unraid-hello-world-plugin-&version;
 rm -rf &emhttp;
 rm -rf &plugin;
 echo
