@@ -5,10 +5,10 @@
   <!ENTITY version    "2024.12.30">
   <!ENTITY gitURL     "https://github.com/&author;/&name;/raw/main">
   <!ENTITY pluginURL  "https://raw.githubusercontent.com/&author;/&name;/main/&name;.plg">
-  <!ENTITY launch     "Tools/UnraidHelloWorldPlugin">
+  <!ENTITY launch     "Settings/UnraidHelloWorldPlugin">
   <!ENTITY plugin     "/boot/config/plugins/&name;">
   <!ENTITY emhttp     "/usr/local/emhttp/plugins/&name;">
-  <!ENTITY md5        "09ac94e5e2b8606da5817d65b0b2996e">
+  <!ENTITY md5        "7d09db679b9b3124f4f8647f1cf0a378">
 ]>
 <PLUGIN name="&name;" 
         author="&author;" 
