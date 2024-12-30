@@ -1,4 +1,4 @@
-Menu="unraid-hello-world-plugin"
+Menu="UnraidHelloWorldPlugin"
 Title="User Names2"
 ---
 <?PHP
