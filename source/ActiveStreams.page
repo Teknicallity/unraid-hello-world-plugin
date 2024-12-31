@@ -36,7 +36,18 @@ function streamList() {
 $(streamList);
 </script>
 <table class='share_status'>
-<thead><tr><td width='14%'>_(Host)_</td><td width='14%'>_(User)_</td><td width='9%'>_(Share)_</td><td width='5%'>_(Type)_</td><td width='auto'>_(Stream)_</td><td width='8%'>_(Playtime)_</td><td width='8%'>_(Size)_</td><td width='3%' style='text-align:center'>_(Halt)_</td></tr></thead>
-<tbody id="streams"></tbody>
+  <thead>
+    <tr>
+      <td width='14%'>_(Host)_</td>
+      <td width='14%'>_(User)_</td>
+      <td width='9%'>_(Share)_</td>
+      <td width='5%'>_(Type)_</td>
+      <td width='auto'>_(Stream)_</td>
+      <td width='8%'>_(Playtime)_</td>
+      <td width='8%'>_(Size)_</td>
+      <td width='3%' style='text-align:center'>_(Halt)_</td>
+    </tr>
+  </thead>
+  <tbody id="streams"></tbody>
 </table>
 <input type="button" value="_(Done)_" onclick="done()">

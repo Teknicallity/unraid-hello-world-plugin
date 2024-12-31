@@ -58,7 +58,13 @@ $(function() {
 <form name="host_names" method="POST" action="/update.php" target="progressFrame">
 <input type="hidden" name="#file"  value="<?=$plugin?>/<?=$plugin?>.cfg">
 <input type="hidden" name="#cleanup" value="true">
-<table class="share_status online"><thead><tr><td>_(Host Address)_</td><td class="host">_(User Name)_</td></tr></thead>
-<tbody id="names"></tbody>
+<table class="share_status online">
+  <thead>
+    <tr>
+      <td>_(Host Address)_</td>
+      <td class="host">_(User Name)_</td>
+    </tr>
+  </thead>
+  <tbody id="names"></tbody>
 </table>
 </form>

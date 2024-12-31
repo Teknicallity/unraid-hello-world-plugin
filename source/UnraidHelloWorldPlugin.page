@@ -3,6 +3,7 @@ Type="xmenu"
 Title="Hello World"
 Icon="hello-world.png"
 Tabs="true"
+Tag="hello-world-icon.png"
 ---
 <?PHP
 /* Simple Hello World Plugin for Unraid */
