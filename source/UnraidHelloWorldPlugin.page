@@ -6,6 +6,13 @@ Tabs="true"
 ---
 <?PHP
 /* Simple Hello World Plugin for Unraid */
+
+// Set document root for Unraid environment.
+$docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
+
+// Include Unraid's GUI helper functions.
+require_once "$docroot/webGui/include/Translations.php";
+require_once "$docroot/webGui/include/Helpers.php";
 ?>
 <script>
 function showMessage() {
@@ -18,4 +25,10 @@ function showMessage() {
   <p>Welcome to the Hello World Unraid plugin page.</p>
   <button onclick="showMessage()">Click Me</button>
   <p id="message" style="margin-top:10px;color:blue;"></p>
+</div>
+
+<div>
+  <?php
+  echo "Hello from php";
+  ?>
 </div>
