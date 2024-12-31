@@ -1,17 +1,17 @@
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE PLUGIN [
   <!ENTITY name       "unraid-hello-world-plugin">
-  <!ENTITY author     "Teknicallity">
+  <!ENTITY gitUser    "Teknicallity">
   <!ENTITY version    "2024.12.30">
-  <!ENTITY gitURL     "https://github.com/&author;/&name;/raw/main">
-  <!ENTITY pluginURL  "https://raw.githubusercontent.com/&author;/&name;/main/&name;.plg">
+  <!ENTITY gitURL     "https://github.com/&gitUser;/&name;/raw/main">
+  <!ENTITY pluginURL  "https://raw.githubusercontent.com/&gitUser;/&name;/main/&name;.plg">
   <!ENTITY launch     "Settings/UnraidHelloWorldPlugin">
   <!ENTITY plugin     "/boot/config/plugins/&name;">
   <!ENTITY emhttp     "/usr/local/emhttp/plugins/&name;">
-  <!ENTITY md5        "0992298fb3c3d76d41ee254b752ca512">
+  <!ENTITY md5        "035d2581ad63e4c9642fa003897943e2">
 ]>
 <PLUGIN name="&name;" 
-        author="&author;" 
+        author="Teknicallity" 
         version="&version;" 
         launch="&launch;" 
         pluginURL="&pluginURL;" 
@@ -31,7 +31,7 @@
 
 <!--Download image-->
 <FILE Name="&emhttp;/images/hello-world.png">
-<URL>https://raw.githubusercontent.com/Teknicallity/unraid-hello-world-plugin/main/images/hello-world.png</URL>
+<URL>https://raw.githubusercontent.com/&gitUser;/&name;/main/images/hello-world.png</URL>
 </FILE>
 
 <!--Remove previous tarballs-->
@@ -77,7 +77,7 @@ echo "-----------------------------------------------"
 echo "----------Uninstalling Intel GPU TOP-----------"
 echo "-----------------------------------------------"
 # Remove plugin related files
-removepkg unraid-hello-world-plugin-&version;
+removepkg &name;-&version;
 rm -rf &emhttp;
 rm -rf &plugin;
 echo
