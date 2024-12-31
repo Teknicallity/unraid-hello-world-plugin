@@ -56,7 +56,9 @@ Tag="myicon.png"
 - **Section Ordering:** Sections are ordered by `.page` filenames. Adjust the order using the `:[number]` suffix if needed.
 
 ### README
-A `README.md` file located at `/usr/local/emhttp/plugins/<plugin-name>/` provides a description for the Plugins tab. This file supports Markdown formatting.
+A `README.md` file located at `/usr/local/emhttp/plugins/<plugin-name>/` provides a description for the Plugins tab. 
+
+This file supports Markdown formatting. The first line will replace the plugin name in the .plg file `<PLUGIN name="unraid-hello-world-plugin">
 
 #### Methods to Add a README:
 1. **Direct Inclusion:** Place the README in the same directory as your `.page` files so it’s included in the tarball.
@@ -88,3 +90,8 @@ Use git to add, commit, and push all changes.
 In the cloned directory, run `cp unraid-hello-world-plugin.plg /boot/`
 
 Now you can go to Unraid Plugins tab, and under "Install Plugin", select the .plg file to install it. After installation, it will be available under "Installed Plugins" and the Unraid Settings tab.
+
+If you are looking to publish the plugin to Community Applications, take a look at the following resources:
+- [Squid's guide for publishing templates](https://forums.unraid.net/topic/57181-docker-faq/#comment-566084)
+- [Sycotix's video guide for publishing templates](https://forums.unraid.net/topic/101424-how-to-publish-docker-templates-to-community-applications-on-unraid/)
+- [My own templates repository](https://github.com/Teknicallity/unraid-templates)
