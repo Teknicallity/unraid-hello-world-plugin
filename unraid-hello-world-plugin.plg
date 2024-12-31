@@ -31,7 +31,7 @@
 
 <!--Download image-->
 <FILE Name="&emhttp;/images/hello-world.png">
-<URL>https://raw.githubusercontent.com/Teknicallity/unraid-hello-world-plugin/main/images/images/hello-world.png</URL>
+<URL>https://raw.githubusercontent.com/Teknicallity/unraid-hello-world-plugin/main/images/hello-world.png</URL>
 </FILE>
 
 <!--Remove previous tarballs-->
