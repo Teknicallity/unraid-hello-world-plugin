@@ -8,7 +8,7 @@
   <!ENTITY launch     "Settings/UnraidHelloWorldPlugin">
   <!ENTITY plugin     "/boot/config/plugins/&name;">
   <!ENTITY emhttp     "/usr/local/emhttp/plugins/&name;">
-  <!ENTITY md5        "035d2581ad63e4c9642fa003897943e2">
+  <!ENTITY md5        "be92944975b45be2e131bea11c6a624b">
 ]>
 <PLUGIN name="&name;" 
         author="Teknicallity" 

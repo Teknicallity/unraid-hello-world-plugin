@@ -77,7 +77,7 @@ A test plugin!
 
 For the purposes of this plugin development, I've created a share named "unraid_development" so that I have a place to store all plugins I develop. It should show up under `/mnt/user/unraid_development/` if you follow along.
 
-You can fork this repository or clone it and upload it to your own GitHub account. I have cloned it to the just created user share.
+You can fork this repository or clone it and upload it to your own GitHub account with the same name. I have cloned it to the previously created user share.
 
 Change the `gitUser` entity at the top of `unraid-hello-world-plugin.plg` to your Github username so that the urls resolve correctly.
 
