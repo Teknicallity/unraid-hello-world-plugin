@@ -99,17 +99,20 @@ To develop this plugin, follow these steps:
     cd /mnt/user/unraid_development/unraid-hello-world-plugin
     ```
 
-2. Run the pkg_build.sh script:
+2. Run the [build script](/pkg_build.sh):
     ```bash
-    ./pkg_build.sh unraid-hello-world-plugin
+    ./pkg_build.sh
     ```
 
     - This creates a tarball in the archives folder.
-    - The script outputs the MD5 hash of the tarball. Copy this hash.
+    - The script outputs the MD5 hash, version, and optionally the version suffix to the .plg file.
 
-3. Open the .plg file and replace the md5 value with the hash from the previous step:
+    If you'd like to see a simple version of this, check out the [basic build script](/basic_build.sh)
+
+3. Open the .plg file and replace the version and md5 value with the hash from the previous step:
     ```xml
     <ENTITY md5="your-md5-hash">
+    <ENTITY version="1970-01-01">
     ```
 
 4. Use Git to commit and push your changes:

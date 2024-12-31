@@ -1,45 +1,44 @@
 #!/bin/bash
 
 # Default values
-developer_dir=$(dirname $(pwd -P))
-plugin_name=$(printf '%q\n' "${PWD##*/}")
 version_suffix=""
-plg_file=$(realpath $(find -name *.plg))
-force_flag=false
+plugin_dir="$(dirname "$(realpath "$0")")"
+plg_file=$(find "$plugin_dir" -name "*.plg" -exec realpath {} \;)
+plugin_name=$(printf '%q\n' "${plugin_dir##*/}")
+accept_flag=false
+dry_run=false
 
 # Function to display usage/help
 usage() {
-  echo "Usage: $0 [-d developer-dir] [-v version-suffix] [-h] [-n plugin-name] [-f]"
+  echo "Usage: $0 [-d] [-v version-suffix] [-h] [-n plugin-name] [-y]"
+  echo
+  echo "The .plg file should have the same name as its parent directory."
   echo
   echo "Options:"
-  echo "  -d    Specify the developer directory (default: current parent directory)"
-  echo "  -n    Specify plugin name to use (default: current directory)"
   echo "  -v    Specify the version suffix (e.g., v1.0)"
   echo "  -p    Specify the .plg file to use. This will replace the md5 hash"
-  echo "  -f    Force mode: skip confirmation"
+  echo "  -d    Dry Run: don not write any changes to files"
+  echo "  -y    Accept mode: skip confirmation"
   echo "  -h    Display this help message"
   echo
   echo "Example:"
-  echo "  $0 -d /path/to/dev/dir -v beta -p /path/to/plugin.plg -f"
+  echo "  $0 -v beta -p /path/to/plugin.plg -f"
 }
 
 # Parse command-line options
-while getopts ":d:n:v:p:fh" opt; do
+while getopts ":v:p:dyh" opt; do
   case ${opt} in
-    d)
-      developer_dir=$(realpath "$OPTARG")
-      ;;
-    n)
-      plugin_name="$OPTARG"
-      ;;
     v)
       version_suffix="$OPTARG"
       ;;
     p)
       plg_file=$(realpath "$OPTARG")
       ;;
-    f)
-      force_flag=true
+    d)
+      dry_run=true
+      ;;
+    y)
+      accept_flag=true
       ;;
     h)
       usage
@@ -56,12 +55,11 @@ done
 shift $((OPTIND - 1))
 
 # Skip confirmation if force flag is enabled
-if [[ "$force_flag" == false ]]; then
+if [[ "$accept_flag" == false ]]; then
   # Display configuration
-  echo "Dev directory: '$developer_dir'"
-  echo "Plugin name: '$plugin_name'"
-  echo "Version suffix: '$version_suffix'"
-  echo "Plg file: '$plg_file'"
+  echo -e "Plg file: \t'$plg_file'"
+  echo -e "Plugin name: \t'$plugin_name'"
+  echo -e "Version suffix: '$version_suffix'"
 
   read -p "Are these correct? (y/Y to proceed): " user_input
   if [[ "$user_input" != "y" && "$user_input" != "Y" ]]; then
@@ -69,21 +67,23 @@ if [[ "$force_flag" == false ]]; then
     exit 1
   fi
 else
-  echo "Force mode enabled. Skipping confirmation."
+  echo "Accept mode enabled. Skipping confirmation."
 fi
 echo "Proceeding..."
+echo
 
 # Set paths based on the plugin name and developer directory
-src_dir="$developer_dir/$plugin_name/source"
-archive_dir="$developer_dir/$plugin_name/archive"
+src_dir="$plugin_dir/source"
+archive_dir="$plugin_dir/archive"
 
 # Generate a unique temporary directory
-tmpdir="$developer_dir/tmp/tmp.$(( $RANDOM * 19318203981230 + 40 ))"
+tmpdir="$plugin_dir/tmp/tmp.$(( $RANDOM * 19318203981230 + 40 ))"
+trap "rm -rf $tmpdir" EXIT
 
 # Generate the version string
 version_date=$(date +"%Y.%m.%d")
 if [[ -n "$version_suffix" ]]; then
-  version=$ver_date-$version_suffix
+  version=$version_date-$version_suffix
 else
   version=$version_date
 fi
@@ -96,21 +96,37 @@ mkdir -p "$archive_dir"
 cd "$src_dir" || { echo "Source directory $src_dir does not exist."; exit 1; }
 
 # Ensure permissions and copy files to the temporary directory
-chmod 0755 -R .
+chmod 0755 -R "$src_dir"
 cp --parents -f $(find . -type f ! \( -iname "pkg_build.sh" -o -iname "sftp-config.json" \) ) \
     "$tmpdir/usr/local/emhttp/plugins/$plugin_name/"
+chmod 0755 -R "$tmpdir"
+chown root:root -R "$tmpdir"
+chmod 0755 "$plugin_dir"
+
+# If dry run, only create archive package in tmp directory
+if [[ "$dry_run" == true ]]; then
+  archive_file="$plugin_dir/tmp/$plugin_name-${version}.txz"
+else
+  archive_file="$archive_dir/$plugin_name-${version}.txz"
+fi
+echo "Archive File:"
+echo "$archive_file"
+echo
 
 # Create the package
 cd "$tmpdir" || { echo "Temporary directory $tmpdir does not exist."; exit 1; }
-makepkg -l y -c y "$archive_dir/$plugin_name-${version}.txz"
+if ! makepkg -l y -c n "$archive_file" ; then
+  echo "Failed to make package. Exiting."
+  exit 1
+fi
 
 # Output the MD5 checksum of the package
-echo "MD5:"
-hash=$(md5sum "$archive_dir/$plugin_name-${version}.txz" | awk '{print $1}')
-echo "$hash"
+hash=$(md5sum "$archive_file" | awk '{print $1}')
+# echo "MD5:"
+# echo "$hash"
 
 # Replace hash and suffix in .plg file if specified
-if [[ ! -z "$plg_file" ]]; then
+if [[ -n "$plg_file" && "$dry_run" == false ]]; then
   if [[ -w "$plg_file" ]]; then
     sed -i "s|<!ENTITY md5        \".*\">|<!ENTITY md5        \"$hash\">|" "$plg_file"
     sed -i "s|<!ENTITY version    \".*\">|<!ENTITY version    \"$version_date\">|" "$plg_file"
@@ -121,5 +137,8 @@ if [[ ! -z "$plg_file" ]]; then
   fi
 fi
 
-# Optional: Uncomment to clean up the temporary directory
-# rm -rf "$tmpdir"
+echo "<!ENTITY md5        \"$hash\">"
+echo "<!ENTITY version    \"$version_date\">"
+if [[ -n "$version_suffix" ]]; then
+  echo "<!ENTITY suffix     \"-$version_suffix\">"
+fi
