@@ -3,6 +3,7 @@
   <!ENTITY name       "unraid-hello-world-plugin">
   <!ENTITY gitUser    "Teknicallity">
   <!ENTITY version    "2024.12.30">
+  <!ENTITY suffix     "">
   <!ENTITY gitURL     "https://github.com/&gitUser;/&name;/raw/main">
   <!ENTITY pluginURL  "https://raw.githubusercontent.com/&gitUser;/&name;/main/&name;.plg">
   <!ENTITY launch     "Settings/UnraidHelloWorldPlugin">
@@ -37,15 +38,14 @@
 <!--Remove previous tarballs-->
 <FILE Run="/bin/bash">
 <INLINE>
-echo "'&gitURL;/archive/&name;-&version;.txz'"
 rm -f $(ls /boot/config/plugins/&name;/&name;-*.txz 2&gt;/dev/null | grep -v '&version;')
 echo "remove old tarballs. Version: &version;"
 </INLINE>
 </FILE>
 
 <!--The install script.-->
-<FILE Name="/boot/config/plugins/&name;/&name;-&version;.txz" Run="upgradepkg --install-new">
-<URL>&gitURL;/archive/&name;-&version;.txz</URL>
+<FILE Name="/boot/config/plugins/&name;/&name;-&version;&suffix;.txz" Run="upgradepkg --install-new">
+<URL>&gitURL;/archive/&name;-&version;&suffix;.txz</URL>
 <MD5>&md5;</MD5>
 </FILE>
 
