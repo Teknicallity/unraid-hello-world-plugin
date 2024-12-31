@@ -75,23 +75,65 @@ A test plugin!
 </FILE>
 ```
 
+
 ## Development
+To develop this plugin, follow these steps:
 
-For the purposes of this plugin development, I've created a share named "unraid_development" so that I have a place to store all plugins I develop. It should show up under `/mnt/user/unraid_development/` if you follow along.
+### 1. Set Up a Development Environment
+1. Create a dedicated share for plugin development. I used:
 
-You can fork this repository or clone it and upload it to your own GitHub account with the same name. I have cloned it to the previously created user share.
+    - Share Name: unraid_development
+    - Path: /mnt/user/unraid_development/
+2. Clone this repository into the unraid_development share. You should upload it into your github account aswell.
 
-Change the `gitUser` entity at the top of `unraid-hello-world-plugin.plg` to your Github username so that the urls resolve correctly.
+### 2. Configure the PLG File
+1. Open the unraid-hello-world-plugin.plg file.
+2. Update the `gitUser` variable at the top to your GitHub username to ensure URLs resolve correctly:
+    ```xml
+    <ENTITY gitUser="your-github-username">
+    ```
 
-Within the cloned folder, run `./pkg_build.sh unraid-hello-world-plugin`. This will create a tarball in the archives folder and give you the md5 hash. Copy the hash and paste it in for the `md5` entity at the top of `unraid-hello-world-plugin.plg`.
+### 3. Build the Plugin Package
+1. Navigate to the cloned directory:
+    ```bash
+    cd /mnt/user/unraid_development/unraid-hello-world-plugin
+    ```
 
-Use git to add, commit, and push all changes.
+2. Run the pkg_build.sh script:
+    ```bash
+    ./pkg_build.sh unraid-hello-world-plugin
+    ```
 
-In the cloned directory, run `cp unraid-hello-world-plugin.plg /boot/`
+    - This creates a tarball in the archives folder.
+    - The script outputs the MD5 hash of the tarball. Copy this hash.
 
-Now you can go to Unraid Plugins tab, and under "Install Plugin", select the .plg file to install it. After installation, it will be available under "Installed Plugins" and the Unraid Settings tab.
+3. Open the .plg file and replace the md5 value with the hash from the previous step:
+    ```xml
+    <ENTITY md5="your-md5-hash">
+    ```
 
-If you are looking to publish the plugin to Community Applications, take a look at the following resources:
+4. Use Git to commit and push your changes:
+    ```bash
+    git add .
+    git commit -m "Update PLG file with new MD5 hash"
+    git push
+    ```
+
+### 4. Install the Plugin Locally
+1. Copy the .plg file to your Unraid boot drive:
+    ```bash
+    cp unraid-hello-world-plugin.plg /boot/
+    ```
+
+2. Open the Unraid web interface:
+    - Go to the Plugins tab.
+    - Under "Install Plugin," select the .plg file.
+
+3. Once installed, the plugin will appear under the Installed Plugins section and the Settings tab.
+    
+### 5. Publish to Community Applications
+If you want to publish your plugin to the Community Applications interface, check out these resources:
+
 - [Squid's guide for publishing templates](https://forums.unraid.net/topic/57181-docker-faq/#comment-566084)
 - [Sycotix's video guide for publishing templates](https://forums.unraid.net/topic/101424-how-to-publish-docker-templates-to-community-applications-on-unraid/)
 - [My own templates repository](https://github.com/Teknicallity/unraid-templates)
