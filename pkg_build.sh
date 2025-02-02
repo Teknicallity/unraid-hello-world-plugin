@@ -3,8 +3,9 @@
 # Default values
 version_suffix=""
 plugin_dir="$(dirname "$(realpath "$0")")"
-plg_file=$(find "$plugin_dir" -name "*.plg" -exec realpath {} \;)
-plugin_name=$(printf '%q\n' "${plugin_dir##*/}")
+plg_filepath=$(find "$plugin_dir" -name "*.plg" -exec realpath {} \;)
+plugin_name=$(printf '%q\n' "${plugin_dir##*/}") # takes the name from root directory
+plugin_name="${plugin_name//-/\.}" # replaces dashes with dots
 accept_flag=false
 dry_run=false
 
@@ -32,7 +33,7 @@ while getopts ":v:p:dyh" opt; do
       version_suffix="$OPTARG"
       ;;
     p)
-      plg_file=$(realpath "$OPTARG")
+      plg_filepath=$(realpath "$OPTARG")
       ;;
     d)
       dry_run=true
@@ -57,7 +58,7 @@ shift $((OPTIND - 1))
 # Skip confirmation if force flag is enabled
 if [[ "$accept_flag" == false ]]; then
   # Display configuration
-  echo -e "Plg file: \t'$plg_file'"
+  echo -e "Plg filepath: \t'$plg_filepath'"
   echo -e "Plugin name: \t'$plugin_name'"
   echo -e "Version suffix: '$version_suffix'"
 
@@ -126,13 +127,13 @@ hash=$(md5sum "$archive_file" | awk '{print $1}')
 # echo "$hash"
 
 # Replace hash and suffix in .plg file if specified
-if [[ -n "$plg_file" && "$dry_run" == false ]]; then
-  if [[ -w "$plg_file" ]]; then
-    sed -i "s|<!ENTITY md5        \".*\">|<!ENTITY md5        \"$hash\">|" "$plg_file"
-    sed -i "s|<!ENTITY version    \".*\">|<!ENTITY version    \"$version_date\">|" "$plg_file"
+if [[ -n "$plg_filepath" && "$dry_run" == false ]]; then
+  if [[ -w "$plg_filepath" ]]; then
+    sed -i "s|<!ENTITY md5        \".*\">|<!ENTITY md5        \"$hash\">|" "$plg_filepath"
+    sed -i "s|<!ENTITY version    \".*\">|<!ENTITY version    \"$version_date\">|" "$plg_filepath"
 
     if [[ -n "$version_suffix" ]]; then
-      sed -i "s|<!ENTITY suffix     \".*\">|<!ENTITY suffix     \"-$version_suffix\">|" "$plg_file"
+      sed -i "s|<!ENTITY suffix     \".*\">|<!ENTITY suffix     \"-$version_suffix\">|" "$plg_filepath"
     fi
   fi
 fi
