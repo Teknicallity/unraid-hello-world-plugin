@@ -4,10 +4,12 @@ This is a scratch plugin repository that helped me learn about Unraid plugins. I
 
 ## Files and Structure
 ### PLG Files
+Location: `/boot/config/plugins/`
 PLG files are used by Unraid to install the plugin. They are referenced by the plugin XML template, enabling download through the Community Applications interface.
 
 ### Page Files
-Page files define the user interface and functionality of any Unraid page. These files must be referenced in the `.plg` file using the `<PLUGIN launch=[Unraid Tab]/[Page File Name]>` tag.
+Location: `/usr/local/emhttp/plugins/<plugin-name>/`
+Page files define the user interface and functionality of any Unraid page. The entrypoint file must be referenced in the `.plg` file using the `<PLUGIN launch=[Unraid Tab]/[Page File Name]>` tag.
 
 - **Naming Conventions:** Use PascalCase for page file names, and do not include the file extension.
 - **Unraid Tabs:** Supported tabs include:
