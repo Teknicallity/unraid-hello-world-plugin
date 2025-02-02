@@ -1,17 +1,18 @@
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE PLUGIN [
-  <!ENTITY name       "unraid-hello-world-plugin">
+  <!ENTITY repoName   "unraid-hello-world-plugin">
+  <!ENTITY pluginName "unraid.hello.world.plugin">
   <!ENTITY gitUser    "Teknicallity">
-  <!ENTITY version    "2024.12.30">
+  <!ENTITY version    "2025.02.02">
   <!ENTITY suffix     "">
-  <!ENTITY gitURL     "https://github.com/&gitUser;/&name;/raw/main">
-  <!ENTITY pluginURL  "https://raw.githubusercontent.com/&gitUser;/&name;/main/&name;.plg">
+  <!ENTITY gitURL     "https://github.com/&gitUser;/&repoName;/raw/main">
+  <!ENTITY pluginURL  "https://raw.githubusercontent.com/&gitUser;/&repoName;/main/&pluginName;.plg">
   <!ENTITY launch     "Settings/UnraidHelloWorldPlugin">
-  <!ENTITY plugin     "/boot/config/plugins/&name;">
-  <!ENTITY emhttp     "/usr/local/emhttp/plugins/&name;">
-  <!ENTITY md5        "be92944975b45be2e131bea11c6a624b">
+  <!ENTITY plugin     "/boot/config/plugins/&pluginName;">
+  <!ENTITY emhttp     "/usr/local/emhttp/plugins/&pluginName;">
+  <!ENTITY md5        "1b09f41fecdd2f17c2a1294417a6027b">
 ]>
-<PLUGIN name="&name;" 
+<PLUGIN name="&pluginName;" 
         author="Teknicallity" 
         version="&version;" 
         launch="&launch;" 
@@ -20,7 +21,7 @@
         support="http://forums.unraid.net/index.php?topic=36543.0">
 
 <CHANGES>
-## &name;
+## &pluginName;
 
 ### 2014.11.30
 - PHP 8.2 corrections
@@ -32,20 +33,20 @@
 
 <!--Download image-->
 <FILE Name="&emhttp;/images/hello-world.png">
-<URL>https://raw.githubusercontent.com/&gitUser;/&name;/main/images/hello-world.png</URL>
+<URL>https://raw.githubusercontent.com/&gitUser;/&repoName;/main/images/hello-world.png</URL>
 </FILE>
 
 <!--Remove previous tarballs-->
 <FILE Run="/bin/bash">
 <INLINE>
-rm -f $(ls /boot/config/plugins/&name;/&name;-*.txz 2&gt;/dev/null | grep -v '&version;')
+rm -f $(ls /boot/config/plugins/&pluginName;/&pluginName;-*.txz 2&gt;/dev/null | grep -v '&version;')
 echo "remove old tarballs. Version: &version;"
 </INLINE>
 </FILE>
 
 <!--The install script.-->
-<FILE Name="/boot/config/plugins/&name;/&name;-&version;&suffix;.txz" Run="upgradepkg --install-new">
-<URL>&gitURL;/archive/&name;-&version;&suffix;.txz</URL>
+<FILE Name="/boot/config/plugins/&pluginName;/&pluginName;-&version;&suffix;.txz" Run="upgradepkg --install-new">
+<URL>&gitURL;/archive/&pluginName;-&version;&suffix;.txz</URL>
 <MD5>&md5;</MD5>
 </FILE>
 
@@ -77,7 +78,7 @@ echo "-----------------------------------------------"
 echo "----------Uninstalling Intel GPU TOP-----------"
 echo "-----------------------------------------------"
 # Remove plugin related files
-removepkg &name;-&version;
+removepkg &pluginName;-&version;
 rm -rf &emhttp;
 rm -rf &plugin;
 echo

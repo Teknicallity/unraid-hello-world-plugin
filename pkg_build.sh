@@ -4,8 +4,8 @@
 version_suffix=""
 plugin_dir="$(dirname "$(realpath "$0")")"
 plg_filepath=$(find "$plugin_dir" -name "*.plg" -exec realpath {} \;)
-plugin_name=$(printf '%q\n' "${plugin_dir##*/}") # takes the name from root directory
-plugin_name="${plugin_name//-/\.}" # replaces dashes with dots
+repo_name=$(printf '%q\n' "${plugin_dir##*/}") # takes the name from root directory
+plugin_name="${repo_name//-/\.}" # replaces dashes with dots
 accept_flag=false
 dry_run=false
 
@@ -131,6 +131,9 @@ if [[ -n "$plg_filepath" && "$dry_run" == false ]]; then
   if [[ -w "$plg_filepath" ]]; then
     sed -i "s|<!ENTITY md5        \".*\">|<!ENTITY md5        \"$hash\">|" "$plg_filepath"
     sed -i "s|<!ENTITY version    \".*\">|<!ENTITY version    \"$version_date\">|" "$plg_filepath"
+
+    sed -i "s|<!ENTITY repoName   \".*\">|<!ENTITY repoName   \"$repo_name\">|" "$plg_filepath"
+    sed -i "s|<!ENTITY pluginName \".*\">|<!ENTITY pluginName \"$plugin_name\">|" "$plg_filepath"
 
     if [[ -n "$version_suffix" ]]; then
       sed -i "s|<!ENTITY suffix     \".*\">|<!ENTITY suffix     \"-$version_suffix\">|" "$plg_filepath"
