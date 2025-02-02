@@ -10,7 +10,7 @@
   <!ENTITY launch     "Settings/UnraidHelloWorldPlugin">
   <!ENTITY plugin     "/boot/config/plugins/&pluginName;">
   <!ENTITY emhttp     "/usr/local/emhttp/plugins/&pluginName;">
-  <!ENTITY md5        "1b09f41fecdd2f17c2a1294417a6027b">
+  <!ENTITY md5        "2f1c5b738bba24b224c9275f86d1cc61">
 ]>
 <PLUGIN name="&pluginName;" 
         author="Teknicallity" 
@@ -53,9 +53,9 @@ echo "remove old tarballs. Version: &version;"
 <!--create plugin README.md file-->
 <FILE Name="&emhttp;/README.md">
 <INLINE>
-**NTFS-3G unraid-hello-world-plugin**
+**Unraid Hello World Plugin**
 
-All this does is install the ntfs-3g package.
+Test development plugin.
 </INLINE>
 </FILE>
 
